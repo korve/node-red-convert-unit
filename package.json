@@ -1,6 +1,6 @@
 {
   "name": "@korve/node-red-convert-unit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "license": "Apache-2.0",
   "keywords": ["node-red", "convert", "unit", "metric", "imperial", "ratio", "fraction"],
