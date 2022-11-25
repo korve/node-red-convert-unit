@@ -1,0 +1,27 @@
+{
+  "name": "node-red-contrib-convert-unit",
+  "version": "1.0.0",
+  "private": false,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/korve/node-red-contrib-convert-unit"
+  },
+  "devDependencies": {
+    "@types/node-red": "^1.2.1",
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  },
+  "node-red": {
+    "nodes": {
+      "convert-unit": "src/node/convert-unit.js"
+    }
+  },
+  "dependencies": {
+    "convert-units": "^2.3.4"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}

@@ -1,0 +1,104 @@
+<script type="text/javascript">
+	var selectableUnits = [
+		"mm", "cm", "m", "km", "in", "yd", "ft-us", "ft", "mi", "mm2", "cm2",
+		"m2", "ha", "km2", "in2", "yd2", "ft2", "ac", "mi2", "mcg", "mg", "g",
+		"kg", "mt", "oz", "lb", "t", "mm3", "cm3", "ml", "cl", "dl", "l", "kl",
+		"m3", "km3", "krm", "tsk", "msk", "kkp", "glas", "kanna", "tsp", "Tbs",
+		"in3", "fl-oz", "cup", "pnt", "qt", "gal", "ft3", "yd3", "ea", "dz", "C",
+		"K", "F", "R", "ns", "mu", "ms", "s", "min", "h", "d", "week", "month",
+		"year", "b", "Kb", "Mb", "Gb", "Tb", "B", "KB", "MB", "GB", "TB", "ppm",
+		"ppb", "ppt", "ppq", "m/s", "km/h", "m/h", "knot", "ft/s", "min/km", "s/m",
+		"min/mi", "s/ft", "Pa", "kPa", "MPa", "hPa", "bar", "torr", "psi", "ksi",
+		"A", "mA", "kA", "V", "mV", "kV", "W", "mW", "kW", "MW", "GW", "VAR", "mVAR",
+		"kVAR", "MVAR", "GVAR", "VA", "mVA", "kVA", "MVA", "GVA", "Wh", "mWh", "kWh",
+		"MWh", "GWh", "J", "kJ", "VARh", "mVARh", "kVARh", "MVARh", "GVARh", "mm3/s",
+		"cm3/s", "ml/s", "cl/s", "dl/s", "l/s", "l/min", "l/h", "kl/s", "kl/min",
+		"kl/h", "m3/s", "m3/min", "m3/h", "km3/s", "tsp/s", "Tbs/s", "in3/s", "in3/min",
+		"in3/h", "fl-oz/s", "fl-oz/min", "fl-oz/h", "cup/s", "pnt/s", "pnt/min", "pnt/h",
+		"qt/s", "gal/s", "gal/min", "gal/h", "ft3/s", "ft3/min", "ft3/h", "yd3/s", "yd3/min",
+		"yd3/h", "lx", "ft-cd", "mHz", "Hz", "kHz", "MHz", "GHz", "THz", "rpm", "deg/s",
+		"rad/s", "rad", "deg", "grad", "arcmin", "arcsec"
+	]
+
+	var options = []
+	for (let unit of selectableUnits) {
+		options.push({ value: unit, label: unit })
+	}
+
+	RED.nodes.registerType("convert-unit", {
+		category: "function",
+		color: "#E2D96E",
+		defaults: {
+			name: { value: "" },
+			from: { value: "Wh" },
+			to: { value: "kWh" },
+		},
+		inputs: 1,
+		outputs: 1,
+		icon: "font-awesome/fa-calculator",
+		label() {
+			if (this.from && this.to) {
+				return "convert " + this.from + " to " + this.to
+			}
+
+			return this.name || "convert"
+		},
+		oneditprepare() {
+			$("#node-input-from").typedInput({
+				types: [
+					{
+						value: "from",
+						options
+					},
+				]
+			})
+			$("#node-input-to").typedInput({
+				types: [
+					{
+						value: "to",
+						options
+					},
+				]
+			})
+		}
+	})
+</script>
+
+<script type="text/html" data-template-name="convert-unit">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-from"><i class="fa fa-tag"></i> From Unit</label>
+        <input type="text" id="node-input-from">
+    </div>
+    <div class="form-row">
+        <label for="node-input-to"><i class="fa fa-tag"></i> To Unit</label>
+        <input type="text" id="node-input-to">
+    </div>
+</script>
+
+<script type="text/markdown" data-help-name="node-type">
+    Converts the message payloads from one SI unit to another.
+
+    ### Inputs
+
+    : payload (number) :  the payload of the message to convert
+    : *from* (string)  :  the from to convert from
+    : *to* (string)    :  the unit to convert to
+
+    ### Outputs
+
+    1. Converted unit
+    : payload (number) :  the payload converted to the "to" unit
+
+    ### Details
+
+    `msg.payload` is used for the conversation from one unit to another. If the
+    payload is not a number, the node will fail. If a unit is unknown or a conversation
+    from one unit to another is not possible, an error will be reported.
+
+    ### References
+     - [convert-unit npm package](https://www.npmjs.com/package/convert-units) - iCopyright (c) 2013 Ben Ng, http://benng.me - The conversation library used to convert the payload
+</script>
