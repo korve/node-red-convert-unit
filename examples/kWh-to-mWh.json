@@ -1,0 +1,70 @@
+[
+  {
+    "id": "5a89095569f8748b",
+    "type": "tab",
+    "label": "Flow 1",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "31f46db026b44bb1",
+    "type": "convert-unit",
+    "z": "5a89095569f8748b",
+    "name": "",
+    "from": "kWh",
+    "to": "MWh",
+    "x": 540,
+    "y": 300,
+    "wires": [
+      [
+        "dcc9a9bec111e8b0"
+      ]
+    ]
+  },
+  {
+    "id": "233ab16587a050d3",
+    "type": "inject",
+    "z": "5a89095569f8748b",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "1",
+    "payloadType": "num",
+    "x": 350,
+    "y": 300,
+    "wires": [
+      [
+        "31f46db026b44bb1"
+      ]
+    ]
+  },
+  {
+    "id": "dcc9a9bec111e8b0",
+    "type": "debug",
+    "z": "5a89095569f8748b",
+    "name": "debug 1",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 740,
+    "y": 300,
+    "wires": []
+  }
+]

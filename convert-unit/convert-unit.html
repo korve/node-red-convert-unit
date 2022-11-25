@@ -36,6 +36,7 @@
 		inputs: 1,
 		outputs: 1,
 		icon: "font-awesome/fa-calculator",
+        paletteLabel: "convert",
 		label() {
 			if (this.from && this.to) {
 				return "convert " + this.from + " to " + this.to
@@ -79,26 +80,30 @@
     </div>
 </script>
 
-<script type="text/markdown" data-help-name="node-type">
-    Converts the message payloads from one SI unit to another.
+<script type="text/markdown" data-help-name="convert-unit">
+Converts the message payloads from one unit to another.
 
-    ### Inputs
+### Inputs
 
-    : payload (number) :  the payload of the message to convert
-    : *from* (string)  :  the from to convert from
-    : *to* (string)    :  the unit to convert to
+: payload (number) :  the payload of the message to convert
+: *from* (string)  :  the unit to convert from
+: *to* (string)    :  the unit to convert to
 
-    ### Outputs
+### Outputs
 
-    1. Converted unit
-    : payload (number) :  the payload converted to the "to" unit
+1. Converted payload
+: payload (number) :  the payload converted to the "to" unit
 
-    ### Details
+### Details
 
-    `msg.payload` is used for the conversation from one unit to another. If the
-    payload is not a number, the node will fail. If a unit is unknown or a conversation
-    from one unit to another is not possible, an error will be reported.
+`msg.payload` is used for the conversation from one unit to another. If the
+payload is not a number, the node will fail. If a unit is unknown or a conversation
+from one unit to another is not possible, an error will be reported.
 
-    ### References
-     - [convert-unit npm package](https://www.npmjs.com/package/convert-units) - iCopyright (c) 2013 Ben Ng, http://benng.me - The conversation library used to convert the payload
+If you set `msg.to` or `msg.to` it will override the units configured in the
+node properties.
+
+### References
+ - [convert-unit npm package](https://www.npmjs.com/package/convert-units) - iCopyright (c) 2013 Ben Ng, http://benng.me - The conversation library used to convert the payload
+ - [GitHub](https://github.com/korve/node-red-contrib-convert-unit) - the nodes github repository
 </script>
